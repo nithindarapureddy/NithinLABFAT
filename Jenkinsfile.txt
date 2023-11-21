@@ -4,44 +4,31 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                script {
-                    // Checkout code from GitHub
-                    git 'https://github.com/nithindarapureddy/NithinLABFAT.git'
-                }
+                checkout scm
             }
         }
 
         stage('Build') {
             steps {
-                script {
-                    // Build Maven project
-                    bat 'mvn clean install'
-                }
+                bat 'mvn clean install'
             }
         }
 
         stage('Docker Build') {
             steps {
-                script {
-                    // Build Docker image
-                    bat 'docker build -t your-docker-image-name .'
-                }
+                bat 'docker build -t your-docker-image-name .'
             }
         }
 
         stage('Docker Push') {
             steps {
-                script {
-                    // Push Docker image to repository
-                    bat 'docker push your-docker-image-name'
-                }
+                bat 'docker push your-docker-image-name'
             }
         }
     }
 
     post {
         failure {
-            // Stage for handling errors
             script {
                 echo 'Pipeline failed! Check the logs for details.'
                 currentBuild.result = 'FAILURE'

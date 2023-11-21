@@ -1,16 +1,16 @@
 pipeline {
     agent any
-    
+
     stages {
         stage('Checkout') {
             steps {
                 script {
                     // Checkout code from GitHub
-                    git 'https://github.com/yourusername/yourrepository.git'
+                    git 'https://github.com/nithindarapureddy/NithinLABFAT.git'
                 }
             }
         }
-        
+
         stage('Build') {
             steps {
                 script {
